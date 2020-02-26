@@ -14,13 +14,15 @@ public class ExecMain {
 
 
     public static void main(String args[]) {
-        if (IKafkaConstants.FLAG == 'C') {
+       /* if (IKafkaConstants.FLAG == 'C') {
             runConsumer();
         } else if (IKafkaConstants.FLAG == 'P') {
             runProducer();
         } else {
             throw new IllegalArgumentException("This process only used for either Consumer or Producer");
-        }
+        }*/
+      //runProducer();
+        runConsumer();
     }
 
     public static void runProducer() {
@@ -28,15 +30,18 @@ public class ExecMain {
         ProducerSample producerSample = new ProducerSample();
         KafkaProducer producer = producerSample.createProducer();
         String message = "messgae";
-        System.out.println("Start Producing messages");
         logger.info("Start Producing messages");
-        for (int i = 0; i < 100; i++) {
-            System.out.println("Inside producer loop");
-            producerSample.produceRecord(producer, message + Integer.toString(i));
+        int count=0;
+        while(true){
+            count++;
+            logger.info("Inside Producer loop");
+            producerSample.produceRecord(producer, message + Integer.toString(count));
         }
     }
 
+
     public static void runConsumer() {
+        logger.info("Inside Consumer Block");
         ConsumerSample consumerSample = new ConsumerSample();
         KafkaConsumer consumer = consumerSample.createConsumer();
 

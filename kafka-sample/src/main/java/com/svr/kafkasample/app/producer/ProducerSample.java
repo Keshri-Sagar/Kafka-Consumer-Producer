@@ -36,7 +36,7 @@ public class ProducerSample {
 
         //create producer record
 
-        ProducerRecord<String, String> producerRecord = new ProducerRecord<String, String>(IKafkaConstants.PRODUCER_TOPIC_A, "hello-world");
+        ProducerRecord<String, String> producerRecord = new ProducerRecord<String, String>(IKafkaConstants.PRODUCER_TOPIC_A, messageToSend);
 
 
         //send data
