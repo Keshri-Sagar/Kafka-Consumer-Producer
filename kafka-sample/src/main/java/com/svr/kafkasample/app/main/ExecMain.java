@@ -21,7 +21,7 @@ public class ExecMain {
         } else {
             throw new IllegalArgumentException("This process only used for either Consumer or Producer");
         }*/
-      //runProducer();
+        //runProducer();
         runConsumer();
     }
 
@@ -31,8 +31,8 @@ public class ExecMain {
         KafkaProducer producer = producerSample.createProducer();
         String message = "messgae";
         logger.info("Start Producing messages");
-        int count=0;
-        while(true){
+        int count = 0;
+        while (true) {
             count++;
             logger.info("Inside Producer loop");
             producerSample.produceRecord(producer, message + Integer.toString(count));
