@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Properties;
 
 public class ConsumerSample {
+
     public KafkaConsumer createConsumer() {
         Properties properties = new Properties();
         properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, IKafkaConstants.BOOTSTRAP_SERVER);
@@ -22,16 +23,16 @@ public class ConsumerSample {
         return kafkaConsumer;
     }
 
-    public String consumeFromKafkaTopic(KafkaConsumer kafkaConsumer,String topicName) {
+    public String consumeFromKafkaTopic(KafkaConsumer kafkaConsumer, String topicName) {
+        ConsumerRecords<String, String> records;
         kafkaConsumer.subscribe(Arrays.asList(IKafkaConstants.CONSUMER_TOPIC_A));
         while (true) {
-            ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofMillis(500));
+            records = kafkaConsumer.poll(Duration.ofMillis(500));
             records.forEach(record -> {
                 System.out.println("key: " + record.key() + " topic: " + record.topic() + "value: " + record.value() +
                         "partition: " + record.partition() + "offset: " + record.offset());
             });
         }
-
     }
 
 }

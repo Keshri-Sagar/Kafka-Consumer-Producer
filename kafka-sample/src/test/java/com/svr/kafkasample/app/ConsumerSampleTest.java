@@ -1,43 +1,17 @@
 package com.svr.kafkasample.app;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import com.svr.kafkasample.app.constants.IKafkaConstants;
+import com.svr.kafkasample.app.consumer.ConsumerSample;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.junit.Test;
 
-/**
- * Unit test for simple App.
- */
-public class ConsumerSampleTest
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public ConsumerSampleTest(String testName )
-    {
-        super( testName );
+
+public class ConsumerSampleTest {
+    @Test
+    public void testConsumer() {
+        ConsumerSample consumerSample = new ConsumerSample();
+        KafkaConsumer kafkaConsumer = consumerSample.createConsumer();
+        consumerSample.consumeFromKafkaTopic(kafkaConsumer, IKafkaConstants.PRODUCER_TOPIC_A);
     }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( ConsumerSampleTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
-
-    
-
-
 
 }
